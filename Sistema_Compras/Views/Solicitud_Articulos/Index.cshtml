@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Sistema_Compras.Solicitud_Articulos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_Solicitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Articulos.Articulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empleados.Cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Medidas.Unidad_de_Medida)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_Solicitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Articulos.Articulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empleados.Cedula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Medidas.Unidad_de_Medida)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdSol }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdSol }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdSol })
+        </td>
+    </tr>
+}
+
+</table>

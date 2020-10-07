@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Sistema_Compras.Medidas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Unidad_de_Medida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unidad_de_Medida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdMedida }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdMedida }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdMedida })
+        </td>
+    </tr>
+}
+
+</table>

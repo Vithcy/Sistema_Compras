@@ -1,0 +1,82 @@
+﻿@model Sistema_Compras.Orden_Compra
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Orden_Compra</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.No_Orden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.No_Orden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Orden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Orden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Costo_Unitario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Costo_Unitario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulos.Articulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Articulos.Articulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marcas.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marcas.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medidas.Unidad_de_Medida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medidas.Unidad_de_Medida)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdOrden }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

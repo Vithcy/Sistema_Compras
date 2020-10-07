@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Sistema_Compras.Proveedores>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cedula_o_RNC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_Comercial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cedula_o_RNC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Comercial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdProv }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdProv }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdProv })
+        </td>
+    </tr>
+}
+
+</table>
