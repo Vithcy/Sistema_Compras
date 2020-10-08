@@ -21,6 +21,7 @@ input,
 select,
 textarea {
     max-width: 280px;
+    /* Si ves esto es porque funcina el GITHUB. BYE */
 }
 
 .banner {
