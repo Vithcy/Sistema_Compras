@@ -11,7 +11,9 @@ namespace Sistema_Compras
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+
     public partial class Orden_Compra
     {
         public int IdOrden { get; set; }
@@ -19,6 +21,8 @@ namespace Sistema_Compras
         public System.DateTime Fecha_Orden { get; set; }
         public bool Activo { get; set; }
         public int Articulo { get; set; }
+        [Range(1, 500,
+      ErrorMessage = "La existencia minima es 1")]
         public int Cantidad { get; set; }
         public int Unidad_Medida { get; set; }
         public int Marca { get; set; }
