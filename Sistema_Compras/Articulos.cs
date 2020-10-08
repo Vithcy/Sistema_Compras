@@ -11,8 +11,7 @@ namespace Sistema_Compras
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Articulos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,8 +25,6 @@ namespace Sistema_Compras
         public string Articulo { get; set; }
         public int Marca { get; set; }
         public int Unidad_Medida { get; set; }
-        [Range(1,500,
-       ErrorMessage = "La existencia minima es 1")]
         public int Existencia { get; set; }
         public bool Activo { get; set; }
     

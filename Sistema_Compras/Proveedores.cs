@@ -15,7 +15,7 @@ namespace Sistema_Compras
     public partial class Proveedores
     {
         public int IdProv { get; set; }
-        public byte[] Nombre { get; set; }
+        public string Nombre { get; set; }
         public string Cedula_o_RNC { get; set; }
         public string Nombre_Comercial { get; set; }
         public bool Activo { get; set; }
