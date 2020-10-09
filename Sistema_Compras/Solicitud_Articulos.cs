@@ -11,13 +11,17 @@ namespace Sistema_Compras
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Solicitud_Articulos
     {
         public int IdSol { get; set; }
         public int Empleado { get; set; }
+        [DataType(DataType.Date)]
         public System.DateTime Fecha_Solicitud { get; set; }
         public int Articulo { get; set; }
+        [Range(1, 500,
+       ErrorMessage = "La cantidad minima es 1")]
         public int Cantidad { get; set; }
         public int Unidad_Medida { get; set; }
         public bool Activo { get; set; }
