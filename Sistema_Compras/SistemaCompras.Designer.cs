@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Vithcy\source\repos\Sistema_Compras\Sistema_Compras\SistemaCompras.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Darlenys Mayers\Source\Repos\Sistema_Compras01\Sistema_Compras\SistemaCompras.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
