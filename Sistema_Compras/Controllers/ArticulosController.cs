@@ -15,13 +15,21 @@ namespace Sistema_Compras.Controllers
         private ComprasEntities db = new ComprasEntities();
 
         // GET: Articulos
-        public ActionResult Index()
+        // BARRA DE BUSQUEDA DE ARTICULOS
+        [Authorize(Roles = "Administrador, Empleado, Consulta")]
+        public ActionResult Index(string Criterio = null)
         {
             var articulos = db.Articulos.Include(a => a.Marcas).Include(a => a.Medidas);
-            return View(articulos.ToList());
+            return View(db.Articulos.Where(p => Criterio == null ||
+            p.Articulo.StartsWith(Criterio) ||
+            p.Marca.ToString().StartsWith(Criterio) ||
+            p.Unidad_Medida.ToString().StartsWith(Criterio) ||
+            p.Existencia.ToString().StartsWith(Criterio) ||
+            p.Activo.ToString().StartsWith(Criterio)).ToList());
         }
 
         // GET: Articulos/Details/5
+        [Authorize(Roles = "Administrador, Empleado, Consulta")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +45,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Articulos/Create
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             ViewBag.Marca = new SelectList(db.Marcas, "IdMarca", "Nombre");
@@ -64,6 +73,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Articulos/Edit/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +109,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Articulos/Delete/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

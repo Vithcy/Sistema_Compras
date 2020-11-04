@@ -11,12 +11,15 @@ namespace Sistema_Compras
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Proveedores
     {
+        [Key]
         public int IdProv { get; set; }
         public string Nombre { get; set; }
         public string Cedula_o_RNC { get; set; }
+        [MaxLength(40, ErrorMessage = "El nombre comercial debe tener un maximo de 40 posiciones")]
         public string Nombre_Comercial { get; set; }
         public bool Activo { get; set; }
     }

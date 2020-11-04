@@ -21,13 +21,13 @@ namespace Sistema_Compras
             this.Orden_Compra = new HashSet<Orden_Compra>();
             this.Solicitud_Articulos = new HashSet<Solicitud_Articulos>();
         }
-    
+        [Key]
         public int IdArt { get; set; }
+        [Required(ErrorMessage = "Nombre del articulo es requerido")]
         public string Articulo { get; set; }
         public int Marca { get; set; }
         public int Unidad_Medida { get; set; }
-        [Range(1, 500,
-       ErrorMessage = "La existencia minima es 1")]
+        [Range(1, 500, ErrorMessage = "La existencia minima es 1")]
         public int Existencia { get; set; }
         public bool Activo { get; set; }
     

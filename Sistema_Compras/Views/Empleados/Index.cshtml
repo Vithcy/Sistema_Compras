@@ -4,48 +4,58 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Empleados</h2>
+
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear empleado", "Create")
 </p>
-<table class="table table-striped table-dark">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Cedula)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Activo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Departamentos.Nombre) Departamento
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cedula)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Departamentos.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdEmp }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdEmp }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdEmp })
-        </td>
-    </tr>
-}
+@* La barra de busqueda Inicia *@
+    <form class="form-inline active-pink-3 active-pink-4" method="get">
+        <input class="form-control form-control-sm ml-3 w-75" type="text" id="Criterio" name="Criterio" />
+        <input class="btn btn-info" type="submit" id="cmdBuscar" value="Buscar" />
+    </form>
+    @* La barra de busqueda Fin *@
 
-</table>
+    <table class="table table-striped table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cedula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departamentos.Nombre) Departamento
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cedula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departamentos.Nombre)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdEmp }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.IdEmp }) |
+                    @Html.ActionLink("Borrar", "Delete", new { id = item.IdEmp })
+                </td>
+            </tr>
+        }
+
+    </table>

@@ -15,12 +15,18 @@ namespace Sistema_Compras.Controllers
         private ComprasEntities db = new ComprasEntities();
 
         // GET: Medidas
-        public ActionResult Index()
+        [Authorize(Roles = "Administrador, Empleado, Consulta")]
+        public ActionResult Index(string Criterio = null)
         {
-            return View(db.Medidas.ToList());
+            var empleados = db.Medidas.Include(e => e.Unidad_de_Medida);
+            return View(db.Medidas.Where(p => Criterio == null ||
+            p.Unidad_de_Medida.StartsWith(Criterio) ||
+            p.Activo.ToString().StartsWith(Criterio)).ToList());
         }
 
+
         // GET: Medidas/Details/5
+        [Authorize(Roles = "Administrador, Empleado, Consulta")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +42,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Medidas/Create
+        [Authorize(Roles = "Administrador, Empleado")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +66,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Medidas/Edit/5
+        [Authorize(Roles = "Administrador, Empleado")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +98,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Medidas/Delete/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

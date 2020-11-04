@@ -11,7 +11,8 @@ namespace Sistema_Compras
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Empleados
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +20,15 @@ namespace Sistema_Compras
         {
             this.Solicitud_Articulos = new HashSet<Solicitud_Articulos>();
         }
-    
+
+        [Key]
         public int IdEmp { get; set; }
+        [Required]
         public string Cedula { get; set; }
+        [Required]
+        [MaxLength(40, ErrorMessage = "El nombre debe tener un maximo de 40 posiciones")]
         public string Nombre { get; set; }
+        [Required]
         public int Departamento { get; set; }
         public bool Activo { get; set; }
     

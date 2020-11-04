@@ -11,7 +11,8 @@ namespace Sistema_Compras
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Marcas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,8 +21,9 @@ namespace Sistema_Compras
             this.Articulos = new HashSet<Articulos>();
             this.Orden_Compra = new HashSet<Orden_Compra>();
         }
-    
+        [Key]
         public int IdMarca { get; set; }
+        [Required]
         public string Nombre { get; set; }
         public bool Activo { get; set; }
     
