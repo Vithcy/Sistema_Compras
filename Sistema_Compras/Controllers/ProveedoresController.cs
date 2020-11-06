@@ -15,12 +15,19 @@ namespace Sistema_Compras.Controllers
         private ComprasEntities db = new ComprasEntities();
 
         // GET: Proveedores
-        public ActionResult Index()
+        [Authorize(Roles = "Administrador, Empleado, Consulta")]
+        public ActionResult Index(string Criterio = null)
         {
-            return View(db.Proveedores.ToList());
+            var Unidad_de_Medida = db.Proveedores.Include(e => e.Nombre_Comercial);
+            return View(db.Proveedores.Where(p => Criterio == null ||
+            p.Nombre.StartsWith(Criterio) ||
+            p.Cedula_o_RNC.StartsWith(Criterio) ||
+            p.Nombre_Comercial.ToString().StartsWith(Criterio) ||
+            p.Activo.ToString().StartsWith(Criterio)).ToList());
         }
 
         // GET: Proveedores/Details/5
+        [Authorize(Roles = "Administrador, Empleado, Consulta")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +43,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Proveedores/Create
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             return View();
@@ -48,6 +56,9 @@ namespace Sistema_Compras.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdProv,Nombre,Cedula_o_RNC,Nombre_Comercial,Activo")] Proveedores proveedores)
         {
+            if (!validaCedula(proveedores.Cedula_o_RNC))
+                ModelState.AddModelError("Cedula_o_RNC", "Error de validacion de Cedula");
+
             if (ModelState.IsValid)
             {
                 db.Proveedores.Add(proveedores);
@@ -58,7 +69,12 @@ namespace Sistema_Compras.Controllers
             return View(proveedores);
         }
 
-        // GET: Proveedores/Edit/5
+
+
+
+
+// GET: Proveedores/Edit/5
+[Authorize(Roles = "Administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +106,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Proveedores/Delete/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -123,5 +140,33 @@ namespace Sistema_Compras.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //Validacion de CEDULA
+        public static bool validaCedula(string pCedula)
+        {
+            int vnTotal = 0;
+            string vcCedula = pCedula.Replace("-", "");
+            int pLongCed = vcCedula.Trim().Length;
+            int[] digitoMult = new int[11] { 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1 };
+
+            if (pLongCed < 11 || pLongCed > 11)
+                return false;
+
+            for (int vDig = 1; vDig <= pLongCed; vDig++)
+            {
+                int vCalculo = Int32.Parse(vcCedula.Substring(vDig - 1, 1)) * digitoMult[vDig - 1];
+                if (vCalculo < 10)
+                    vnTotal += vCalculo;
+                else
+                    vnTotal += Int32.Parse(vCalculo.ToString().Substring(0, 1)) + Int32.Parse(vCalculo.ToString().Substring(1, 1));
+            }
+
+            if (vnTotal % 10 == 0)
+                return true;
+            else
+                return false;
+        }
+
+
     }
 }

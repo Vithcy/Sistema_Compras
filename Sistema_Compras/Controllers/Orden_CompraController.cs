@@ -15,6 +15,7 @@ namespace Sistema_Compras.Controllers
         private ComprasEntities db = new ComprasEntities();
 
         // GET: Orden_Compra
+        [Authorize(Roles = "Administrador, Empleado, Consulta")]
         public ActionResult Index()
         {
             var orden_Compra = db.Orden_Compra.Include(o => o.Articulos).Include(o => o.Marcas).Include(o => o.Medidas);
@@ -22,6 +23,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Orden_Compra/Details/5
+        [Authorize(Roles = "Administrador, Empleado, Consulta")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Orden_Compra/Create
+        [Authorize(Roles = "Administrador, Empleado")]
         public ActionResult Create()
         {
             ViewBag.Articulo = new SelectList(db.Articulos, "IdArt", "Articulo");
@@ -66,6 +69,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Orden_Compra/Edit/5
+        [Authorize(Roles = "Administrador, Empleado")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -103,6 +107,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Orden_Compra/Delete/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

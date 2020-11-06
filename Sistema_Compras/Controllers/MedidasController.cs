@@ -15,7 +15,7 @@ namespace Sistema_Compras.Controllers
         private ComprasEntities db = new ComprasEntities();
 
         // GET: Medidas
-        [Authorize(Roles = "Administrador, Empleado, Consulta")]
+        [Authorize(Roles = "Administrador, Empleado")]
         public ActionResult Index(string Criterio = null)
         {
             var empleados = db.Medidas.Include(e => e.Unidad_de_Medida);
@@ -26,7 +26,7 @@ namespace Sistema_Compras.Controllers
 
 
         // GET: Medidas/Details/5
-        [Authorize(Roles = "Administrador, Empleado, Consulta")]
+        [Authorize(Roles = "Administrador, Empleado")]
         public ActionResult Details(int? id)
         {
             if (id == null)

@@ -6,41 +6,92 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Sistema de Compras", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Articulos", "Index", "Articulos")</li>
-                    <li>@Html.ActionLink("Marcas", "Index", "Marcas")</li>
-                    <li>@Html.ActionLink("Proveedores", "Index", "Proveedores")</li>
-                    <li>@Html.ActionLink("Departamentos", "Index", "Departamentos")</li>
-                    <li>@Html.ActionLink("Empleados", "Index", "Empleados")</li>
-                    <li>@Html.ActionLink("Medidas", "Index", "Medidas")</li>
+<style>
+    .dropbtn {
+        background-color: black;
+        color: ghostwhite;
+        padding: 16px;
+        font-size: 14px;
+        border: none;
+        display: inline-block;
+        cursor: pointer;
+    }
 
-                </ul>
-                @Html.Partial("_LoginPartial")
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: black;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: ghostwhite;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: grey;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: darkgray;
+    }
+</style>
+
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Sistema de Compras", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Departamentos", "Index", "Departamentos")</li>
+                        <li>@Html.ActionLink("Empleados", "Index", "Empleados")</li>
+                        <li>@Html.ActionLink("Medidas", "Index", "Medidas")</li>
+
+                            <div class="dropdown">
+                                <button class="dropbtn">Mercancia</button>
+                                <div class="dropdown-content">
+                                    <a href="#">@Html.ActionLink("Orden_Compra", "Index", "Orden_Compra")</a>
+                                    <a href="#">@Html.ActionLink("Proveedores", "Index", "Proveedores")</a>
+                                    <a href="#">@Html.ActionLink("Marcas", "Index", "Marcas")</a>
+                                    <a href="#">@Html.ActionLink("Articulos", "Index", "Articulos")</a>
+                                </div>
+                            </div>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+         
             </div>
         </div>
 
 
-    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Sistema de Compras</p>
         </footer>
     </div>
 

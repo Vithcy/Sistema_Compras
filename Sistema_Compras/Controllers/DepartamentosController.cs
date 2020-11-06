@@ -15,7 +15,7 @@ namespace Sistema_Compras.Controllers
         private ComprasEntities db = new ComprasEntities();
 
         // GET: Departamentos
-        [Authorize(Roles = "Administrador, Empleado, Consulta")]
+        [Authorize(Roles = "Administrador, Empleado")]
         public ActionResult Index(string Criterio = null)
         {
             var empleados = db.Departamentos.Include(e => e.Empleados);
@@ -25,7 +25,7 @@ namespace Sistema_Compras.Controllers
         }
 
         // GET: Departamentos/Details/5
-        [Authorize(Roles = "Administrador, Empleado, Consulta")]
+        [Authorize(Roles = "Administrador, Empleado")]
         public ActionResult Details(int? id)
         {
             if (id == null)

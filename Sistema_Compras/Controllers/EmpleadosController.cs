@@ -16,7 +16,7 @@ namespace Sistema_Compras.Controllers
 
         // GET: Empleados
         // BARRA DE BUSQUEDA DE EMPLEADOS
-        [Authorize(Roles = "Administrador, Empleado, Consulta")]
+        [Authorize(Roles = "Administrador, Empleado")]
         public ActionResult Index(string Criterio = null)
         {
             var empleados = db.Empleados.Include(e => e.Departamentos);
@@ -29,7 +29,7 @@ namespace Sistema_Compras.Controllers
 
 
         // GET: Empleados/Details/5
-        [Authorize(Roles = "Administrador, Empleado, Consulta")]
+        [Authorize(Roles = "Administrador, Empleado")]
         public ActionResult Details(int? id)
         {
             if (id == null)

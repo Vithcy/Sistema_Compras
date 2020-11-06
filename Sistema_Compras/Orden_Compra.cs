@@ -11,11 +11,14 @@ namespace Sistema_Compras
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Orden_Compra
     {
         public int IdOrden { get; set; }
         public int No_Orden { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime Fecha_Orden { get; set; }
         public bool Activo { get; set; }
         public int Articulo { get; set; }
